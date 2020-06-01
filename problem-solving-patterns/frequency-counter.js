@@ -22,7 +22,7 @@ const same1 = (arr1, arr2) => {
     return true
 }
 
-//  better solution O(N), less readable but much more efficient
+//  better solution - time complexity of O(N), less readable but much more efficient
 //  loop over each array one time individually, it will be O(N) instead of O(N**2)
 
 function same2 (arr1, arr2) {
