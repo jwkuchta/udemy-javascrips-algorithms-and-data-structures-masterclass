@@ -34,6 +34,7 @@ const recursiveFactorial = num => {
 // 3. stack overflow! - recursion not stopping
 
 // HELPER METHOD RECURSION (OUTER FUNCTION AND INSIDE A HELPER RECURSIVE FUNCTION)
+// it's a pattern
 
 const outer = input => {
     let outerScopeVariable = []
@@ -49,19 +50,33 @@ const outer = input => {
 // for example
 
 const collectOddValues = arr => {
-    let result = []
+    let newArr = []
 
     const helper = helperInput => {
         if (helperInput.length === 0) {
             return
         }
 
-        if (helperInput[0] * 2 !== 0) {
-            result.push(helperInput[0])
+        if (helperInput[0] % 2 !== 0) {
+            newArr.push(helperInput[0])
         }
+
+        helper(helperInput.slice(1))
     }
 
     helper(arr)
-    return result
+    return newArr
 }
+
+// same thing with Pure Recursion (less readable)
+
+const collectOddValues2 = arr => {
+    let newArr = []
+    if (arr.length === 0) return newArr
+    if (arr[0] % 2 !== 0) newArr.push(arr[0])
+    newArr = newArr.concat(collectOddValues2(arr.slice(1)))
+    return newArr
+}
+
+
 
