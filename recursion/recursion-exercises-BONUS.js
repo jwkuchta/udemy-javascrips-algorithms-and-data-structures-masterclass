@@ -131,7 +131,6 @@ const stringifyNumbers = obj => {
 
 const collectStrings1 = obj => {
     let stringsArr = [];
- 
     const gatherStrings = (o) => {
         for(let key in o) {
             if(typeof o[key] === 'string') {
@@ -142,9 +141,7 @@ const collectStrings1 = obj => {
             }
         }
     }
- 
     gatherStrings(obj)
- 
     return stringsArr
 }
 

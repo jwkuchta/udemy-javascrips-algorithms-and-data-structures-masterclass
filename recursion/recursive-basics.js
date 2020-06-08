@@ -1,4 +1,4 @@
-// REGULAR FACTORIAL (CALLS ITSELF)
+// REGULAR (CALLS ITSELF)
 const countDown = num => {
     if (num <= 0) {
         console.log('done!')
@@ -25,7 +25,7 @@ const factorial = num => {
 
 const recursiveFactorial = num => {
     if(num === 1) return 1 // because factorial of 1 is 1
-    return num * factorial(num - 1)
+    return num * recursiveFactorial(num - 1)
 }
 
 // RECURSION PITFALLS
