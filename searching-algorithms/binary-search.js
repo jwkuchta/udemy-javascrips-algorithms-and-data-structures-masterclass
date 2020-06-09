@@ -14,27 +14,15 @@ let states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','Californ
 
 let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
-// const binarySearch = (array, element) => {
-//     let slice
-//     let halfIndex = array.length / 2
-//     if (array[halfIndex] === element) {
-//         return array[halfIndex]
-//     } else if (array[halfIndex] > element) {
-//         slice = array.slice(0, halfIndex)
-//     } else if (array[halfIndex] < element) {
-//         slice = array.slice(halfIndex)
-//     }
-// }
-
 const binarySearch = (array, element) => {
     let left = 0
     let right = array.length - 1
     
-    while (left <= right) {
+    // if we don't add the && it will keep looping in the case of a number that does not exist
+    // it worked fine without in the repl
+    while (left <= right && left <= right) {
         let middleIndex = Math.round((left + right) / 2)
-        if (array[middleIndex] === element) {
-            return middleIndex
-        } 
+        if (array[middleIndex] === element) return middleIndex
         if (array[middleIndex] > element) {
             // array = array.slice(0, array[right])
             right = middleIndex -1
@@ -43,5 +31,8 @@ const binarySearch = (array, element) => {
             left = middleIndex + 1
         }
     }
+    console.log(left, right, middleIndex)
     return -1
 }
+
+binarySearch(nums, 5)
