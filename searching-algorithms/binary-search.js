@@ -14,6 +14,9 @@ let states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','Californ
 
 let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
+// binary search has a O(log n)
+// every time we double the size of N, we add one extra step
+// in the grand scheme of things O(log n) is as good as O(1)
 const binarySearch = (array, element) => {
     let left = 0
     let right = array.length - 1
