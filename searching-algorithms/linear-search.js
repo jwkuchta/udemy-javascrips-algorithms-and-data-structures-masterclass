@@ -5,3 +5,23 @@ let states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','Californ
 
 // what if it is an unsorted list? We have to check one by one - LINEAR SEARCH
 // indexOf, includes, find, findIndex are all linear search algorithms
+
+// returns an index at which the value exists
+const linearSearch = (array, value) => {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            return i
+        } 
+    }
+    return -1
+}
+
+// same result, newer syntax
+const linearSearch2 = (array, value) => {
+    for (let element of array) {
+        if (element === value) {
+            return array.indexOf(element)
+        }
+    }
+    return -1
+}
