@@ -11,3 +11,37 @@ let states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','Californ
 // if the value is too small, move the left pointer up
 // if the value is too large, move the right pointer down
 // if you don't find a value, return -1
+
+let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+// const binarySearch = (array, element) => {
+//     let slice
+//     let halfIndex = array.length / 2
+//     if (array[halfIndex] === element) {
+//         return array[halfIndex]
+//     } else if (array[halfIndex] > element) {
+//         slice = array.slice(0, halfIndex)
+//     } else if (array[halfIndex] < element) {
+//         slice = array.slice(halfIndex)
+//     }
+// }
+
+const binarySearch = (array, element) => {
+    let left = 0
+    let right = array.length - 1
+    
+    while (left <= right) {
+        let middleIndex = Math.round((left + right) / 2)
+        if (array[middleIndex] === element) {
+            return middleIndex
+        } 
+        if (array[middleIndex] > element) {
+            // array = array.slice(0, array[right])
+            right = middleIndex -1
+        } 
+        if (array[middleIndex] < element) {
+            left = middleIndex + 1
+        }
+    }
+    return -1
+}
