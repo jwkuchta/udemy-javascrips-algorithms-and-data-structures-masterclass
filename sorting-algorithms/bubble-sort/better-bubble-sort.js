@@ -1,3 +1,9 @@
+let nums = [30, 29, 1, 4, 6, 100]
+
+const swap = (arr, index1, index2) => {
+    [arr[index1], arr[index2]] = [arr[index2], arr[index1]]
+}
+
 // as i goes down so does j and we have fewer loops 4, 3, 2, 1
 // the end is sorted so we do not have to include it
 const betterBubbleSort = arr => {
