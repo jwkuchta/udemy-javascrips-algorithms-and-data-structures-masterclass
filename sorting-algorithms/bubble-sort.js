@@ -26,10 +26,10 @@ const swap2 = (arr, index1, index2) => {
 
 // less optimized verion
 const bubbleSort = arr => {
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length; j++) {
-            if (arr[j] > arr[j+1]) {
-                swap1(arr, j, i)
+    for (let element of arr) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > arr[i+1]) {
+              swap1(arr, i, i+1)
             }
         }
     }
