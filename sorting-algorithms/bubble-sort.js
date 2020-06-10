@@ -7,6 +7,9 @@
 // visualgo.net
 
 // ES5
+
+let nums = [30, 29, 1, 4, 6, 100]
+
 const swap1 = (arr, index1, index2) => {
     let temp = arr[index1]
     arr[index1] = arr[index2]
@@ -29,7 +32,7 @@ const swap2 = (arr, index1, index2) => {
 const bubbleSort = arr => {
     for (let i=0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
-            console.log(arr, 'i: ', i, 'arr[j]: ', arr[j], 'j: ', j, 'arr[j+1]: ', arr[j+1])
+            console.log(arr, i, j, 'comparing ', arr[j], 'and ', arr[j+1])
             if (arr[j] > arr[j+1]) {
                 swap1(arr, j, j+1)
             }
@@ -40,84 +43,47 @@ const bubbleSort = arr => {
 }
 
 // OUTPUT - O(N**2)
-// [ 30, 29, 1, 4, 6, 100 ] i:  0 arr[j]:  30 j:  0 arr[j+1]:  29
-// [ 29, 30, 1, 4, 6, 100 ] i:  0 arr[j]:  30 j:  1 arr[j+1]:  1
-// [ 29, 1, 30, 4, 6, 100 ] i:  0 arr[j]:  30 j:  2 arr[j+1]:  4
-// [ 29, 1, 4, 30, 6, 100 ] i:  0 arr[j]:  30 j:  3 arr[j+1]:  6
-// [ 29, 1, 4, 6, 30, 100 ] i:  0 arr[j]:  30 j:  4 arr[j+1]:  100
-// [ 29, 1, 4, 6, 30, 100 ] i:  0 arr[j]:  100 j:  5 arr[j+1]:  undefined
+// [ 30, 29, 1, 4, 6, 100 ] 0 0 comparing  30 and  29
+// [ 29, 30, 1, 4, 6, 100 ] 0 1 comparing  30 and  1
+// [ 29, 1, 30, 4, 6, 100 ] 0 2 comparing  30 and  4
+// [ 29, 1, 4, 30, 6, 100 ] 0 3 comparing  30 and  6
+// [ 29, 1, 4, 6, 30, 100 ] 0 4 comparing  30 and  100
+// [ 29, 1, 4, 6, 30, 100 ] 0 5 comparing  100 and  undefined
 // one pass complete
-// [ 29, 1, 4, 6, 30, 100 ] i:  1 arr[j]:  29 j:  0 arr[j+1]:  1
-// [ 1, 29, 4, 6, 30, 100 ] i:  1 arr[j]:  29 j:  1 arr[j+1]:  4
-// [ 1, 4, 29, 6, 30, 100 ] i:  1 arr[j]:  29 j:  2 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  1 arr[j]:  29 j:  3 arr[j+1]:  30
-// [ 1, 4, 6, 29, 30, 100 ] i:  1 arr[j]:  30 j:  4 arr[j+1]:  100
-// [ 1, 4, 6, 29, 30, 100 ] i:  1 arr[j]:  100 j:  5 arr[j+1]:  undefined
+// [ 29, 1, 4, 6, 30, 100 ] 1 0 comparing  29 and  1
+// [ 1, 29, 4, 6, 30, 100 ] 1 1 comparing  29 and  4
+// [ 1, 4, 29, 6, 30, 100 ] 1 2 comparing  29 and  6
+// [ 1, 4, 6, 29, 30, 100 ] 1 3 comparing  29 and  30
+// [ 1, 4, 6, 29, 30, 100 ] 1 4 comparing  30 and  100
+// [ 1, 4, 6, 29, 30, 100 ] 1 5 comparing  100 and  undefined
 // one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  1 j:  0 arr[j+1]:  4
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  4 j:  1 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  6 j:  2 arr[j+1]:  29
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  29 j:  3 arr[j+1]:  30
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  30 j:  4 arr[j+1]:  100
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  100 j:  5 arr[j+1]:  undefined
+// [ 1, 4, 6, 29, 30, 100 ] 2 0 comparing  1 and  4
+// [ 1, 4, 6, 29, 30, 100 ] 2 1 comparing  4 and  6
+// [ 1, 4, 6, 29, 30, 100 ] 2 2 comparing  6 and  29
+// [ 1, 4, 6, 29, 30, 100 ] 2 3 comparing  29 and  30
+// [ 1, 4, 6, 29, 30, 100 ] 2 4 comparing  30 and  100
+// [ 1, 4, 6, 29, 30, 100 ] 2 5 comparing  100 and  undefined
 // one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  1 j:  0 arr[j+1]:  4
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  4 j:  1 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  6 j:  2 arr[j+1]:  29
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  29 j:  3 arr[j+1]:  30
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  30 j:  4 arr[j+1]:  100
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  100 j:  5 arr[j+1]:  undefined
+// [ 1, 4, 6, 29, 30, 100 ] 3 0 comparing  1 and  4
+// [ 1, 4, 6, 29, 30, 100 ] 3 1 comparing  4 and  6
+// [ 1, 4, 6, 29, 30, 100 ] 3 2 comparing  6 and  29
+// [ 1, 4, 6, 29, 30, 100 ] 3 3 comparing  29 and  30
+// [ 1, 4, 6, 29, 30, 100 ] 3 4 comparing  30 and  100
+// [ 1, 4, 6, 29, 30, 100 ] 3 5 comparing  100 and  undefined
 // one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  1 j:  0 arr[j+1]:  4
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  4 j:  1 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  6 j:  2 arr[j+1]:  29
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  29 j:  3 arr[j+1]:  30
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  30 j:  4 arr[j+1]:  100
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  100 j:  5 arr[j+1]:  undefined
+// [ 1, 4, 6, 29, 30, 100 ] 4 0 comparing  1 and  4
+// [ 1, 4, 6, 29, 30, 100 ] 4 1 comparing  4 and  6
+// [ 1, 4, 6, 29, 30, 100 ] 4 2 comparing  6 and  29
+// [ 1, 4, 6, 29, 30, 100 ] 4 3 comparing  29 and  30
+// [ 1, 4, 6, 29, 30, 100 ] 4 4 comparing  30 and  100
+// [ 1, 4, 6, 29, 30, 100 ] 4 5 comparing  100 and  undefined
 // one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  1 j:  0 arr[j+1]:  4
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  4 j:  1 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  6 j:  2 arr[j+1]:  29
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  29 j:  3 arr[j+1]:  30
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  30 j:  4 arr[j+1]:  100
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  100 j:  5 arr[j+1]:  undefined
+// [ 1, 4, 6, 29, 30, 100 ] 5 0 comparing  1 and  4
+// [ 1, 4, 6, 29, 30, 100 ] 5 1 comparing  4 and  6
+// [ 1, 4, 6, 29, 30, 100 ] 5 2 comparing  6 and  29
+// [ 1, 4, 6, 29, 30, 100 ] 5 3 comparing  29 and  30
+// [ 1, 4, 6, 29, 30, 100 ] 5 4 comparing  30 and  100
+// [ 1, 4, 6, 29, 30, 100 ] 5 5 comparing  100 and  undefined
 // one pass complete
 // [ 1, 4, 6, 29, 30, 100 ]
 
-// as i goes down so does j and we have fewer loops 4, 3, 2, 1
-const betterBubbleSort = arr => {
-    for (let i = arr.length; i > 0; i--) {
-        for (let j = 0; j < i-1; j++) {
-            console.log(arr, 'i: ', i, 'arr[j]: ', arr[j], 'j: ', j, 'arr[j+1]: ', arr[j+1])
-            if (arr[j] > arr[j+1]) {
-                swap1(arr, j, j+1)
-            }
-        }
-        console.log('one pass complete')
-    }
-    return arr
-}
-
-// OUTPUT - O(LOG N) ???
-// [ 30, 29, 1, 4, 6, 100 ] i:  6 arr[j]:  30 j:  0 arr[j+1]:  29
-// [ 29, 30, 1, 4, 6, 100 ] i:  6 arr[j]:  30 j:  1 arr[j+1]:  1
-// [ 29, 1, 30, 4, 6, 100 ] i:  6 arr[j]:  30 j:  2 arr[j+1]:  4
-// [ 29, 1, 4, 30, 6, 100 ] i:  6 arr[j]:  30 j:  3 arr[j+1]:  6
-// [ 29, 1, 4, 6, 30, 100 ] i:  6 arr[j]:  30 j:  4 arr[j+1]:  100
-// one pass complete
-// [ 29, 1, 4, 6, 30, 100 ] i:  5 arr[j]:  29 j:  0 arr[j+1]:  1
-// [ 1, 29, 4, 6, 30, 100 ] i:  5 arr[j]:  29 j:  1 arr[j+1]:  4
-// [ 1, 4, 29, 6, 30, 100 ] i:  5 arr[j]:  29 j:  2 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  5 arr[j]:  29 j:  3 arr[j+1]:  30
-// one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  1 j:  0 arr[j+1]:  4
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  4 j:  1 arr[j+1]:  6
-// [ 1, 4, 6, 29, 30, 100 ] i:  4 arr[j]:  6 j:  2 arr[j+1]:  29
-// one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  1 j:  0 arr[j+1]:  4
-// [ 1, 4, 6, 29, 30, 100 ] i:  3 arr[j]:  4 j:  1 arr[j+1]:  6
-// one pass complete
-// [ 1, 4, 6, 29, 30, 100 ] i:  2 arr[j]:  1 j:  0 arr[j+1]:  4
-// one pass complete
-// one pass complete
-// [ 1, 4, 6, 29, 30, 100 ]
