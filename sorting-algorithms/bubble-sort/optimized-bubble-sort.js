@@ -1,6 +1,6 @@
 // optimizig the loop so it does not compare again numbers that were not swapped before
 
-// optimized with noSwaps
+// optimized with noSwaps - O(n)
 const betterBubbleSort = arr => {
     let noSwaps
     for (let i = arr.length; i > 0; i--) {
