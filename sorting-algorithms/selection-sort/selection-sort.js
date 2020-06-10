@@ -22,7 +22,13 @@ const selectionSort = arr => {
                 min = j
             }
         }
-        swap(arr, i, min)
+        // to avoid swapping unnecessarily
+        if (i !== min) swap(arr, i, min)
     }
     return arr
 }
+
+selectionSort(nums)
+
+// selection sort has Big O(n**2)
+// it is better when you want to save memory
