@@ -60,3 +60,8 @@ const mergeSort = arr => {
 }
 
 console.log(mergeSort([45,2,90,1,60,100,3]))
+
+// time complexity of mergeSort is O(n log n)
+// doubling the array adds 1 step
+// as n grows, the number of steps grows at log n speed
+// space complecity is O(n)
