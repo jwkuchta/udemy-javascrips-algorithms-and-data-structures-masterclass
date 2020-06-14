@@ -60,3 +60,8 @@ const radixSort = nums => {
 
 // console.log(radixSort([12345, 12, 1, 1234, 123]))
 console.log(radixSort([23, 345, 5467, 12, 2345]))
+
+// time complexity of radixSort is O(nk) (which on average could mean O(n log n))
+// space complexity is O(n+k)
+// the efficiency of this algorithm is debatable and depends on the type of computer memory
+// but theoretically it should be much faster than comparison algorithms

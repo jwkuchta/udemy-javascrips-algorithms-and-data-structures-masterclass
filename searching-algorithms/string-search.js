@@ -25,3 +25,34 @@ const stringSearch = (string, substring) => {
 }
 
 stringSearch('lola loled', 'lol') // 2
+
+// given a pattern of 1s and 0s and a string of all lowercase letters, 
+// where 1 corresponds to a consonant and 0 corresponds to a vowel, 
+// count how many consecutive matches are in the string
+
+const binaryPatternMatching = (pattern, s) => {
+    let subStrings = s.split('')
+    let arrayInBinary = []
+    for (let char of subStrings) {
+      if (/[aeiouy]/.test(char) === true) {
+        arrayInBinary.push(0)
+      } else {
+        arrayInBinary.push(1)
+      }
+    }
+    let count = 0
+    let string = arrayInBinary.join('')
+    let substring = pattern
+    for (let i = 0; i < string.length; i++) {
+        for (let j = 0; j < substring.length; j++) {
+            if (substring[j] !== string[i+j]) {
+                break  
+            }
+            if(j === substring.length -1) {
+                count++
+            }
+        }
+    }
+    return count
+  
+}
