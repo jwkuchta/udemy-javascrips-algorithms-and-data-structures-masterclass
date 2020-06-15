@@ -78,11 +78,27 @@ class SinglyLinkedList {
         if (!this.head) {
             this.head = newNode
             this.tail = newNode
-        }
-        this.head.next = this.head
-        this.head = newNode
+        } else {
+            // this way fails to connect the head to next, why?
+            // this.head.next = this.head
+            // this.head = newNode
+            // his way:
+            newNode.next = this.head
+            this.head = newNode
+        } 
         this.length++
         return this
+    }
+
+    // takes a number (n) and returns an item at that index (we start at 0 and do this.next n-times)
+    get(index) {
+        if (index < 0 || index >= this.length) return null
+        let counter = 0
+        while (index > counter) {
+            this.next = this.next.next
+            counter++
+        }
+        return this.next
     }
 }
 
