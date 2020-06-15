@@ -117,19 +117,14 @@ class SinglyLinkedList {
     // like set, but inserts instead of updating the value at index position
     insert(index, value) {
         if (index < 0 || index > this.length) return false
-        if (index === this.length) {
-            this.push(value)
-            return true
-        } else if (index === 0) {
-            this.unshift(value)
-            return true
-        } else {
-            let newNode = new Node(value)
-            let before = this.get(index-1)
-            let after = this.get(index)
-            before.next = newNode
-            newNode.next = after
-        }
+        // adding !! coerces truthy value to true, and we save a few lines of code
+        if (index === this.length) return !!this.push(value)
+        if (index === 0) return !!this.unshift(value)
+        let newNode = new Node(value)
+        let before = this.get(index-1)
+        let after = this.get(index)
+        before.next = newNode
+        newNode.next = after
         this.length++
         return true
     }
