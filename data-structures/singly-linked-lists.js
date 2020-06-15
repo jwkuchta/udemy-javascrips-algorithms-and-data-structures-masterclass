@@ -94,11 +94,24 @@ class SinglyLinkedList {
     get(index) {
         if (index < 0 || index >= this.length) return null
         let counter = 0
-        while (index > counter) {
-            this.next = this.next.next
+        let current = this.head
+        while (index !== counter) {
+            current = current.next
             counter++
         }
-        return this.next
+        return current
+    }
+
+    // accepts a position and an item to update the list at that position. It changes the value at that index!
+    set(index, value) {
+        // uses get() to see if there is anything at this index
+        let nodeAtIndex = this.get(index)
+        if (!nodeAtIndex) {
+            return false
+        } else {
+            nodeAtIndex.val = value
+            return true
+        }
     }
 }
 
