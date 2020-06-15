@@ -128,6 +128,18 @@ class SinglyLinkedList {
         this.length++
         return true
     }
+
+    // takes in an index and removes a value at the index
+    remove(index) {
+        if (index < 0 || index > this.length) return false
+        if (index === this.length) return !!this.pop()
+        if (index === 0) return !!this.shift()
+        let removed = this.get(index)
+        let before = this.get(index-1)
+        before.next = removed.next
+        this.length--
+        return true
+    }
 }
 
 let list = new SinglyLinkedList()
