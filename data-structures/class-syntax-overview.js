@@ -10,7 +10,21 @@ class Student {
         this.firstName = firstName
         this.lastName = lastName
     }
+
+    // instance method
+    fullName() {
+        return `${this.firstName} ${this.lastName}`
+    }
+
+    // class method
+    static enrollStudents(...students) {
+        return 'Enrolled students'
+    }
+
+    // gets called with Student.enrollStudents()
 }
 
 let ina = new Student("Ina", "Bina")
 console.log('Hello', ina.firstName)
+
+console.log(ina.fullName())
