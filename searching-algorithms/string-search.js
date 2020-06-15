@@ -36,12 +36,17 @@ const binaryPatternMatching = (pattern, s) => {
     for (let char of subStrings) {
       if (/[aeiouy]/.test(char) === true) {
         arrayInBinary.push(0)
-      } else {
+      } else if (/[bcdfghjklmnpqrstvwxz]/.test(char) === true) {
         arrayInBinary.push(1)
+      } else {
+        arrayInBinary.push(' ')
       }
     }
     let count = 0
     let string = arrayInBinary.join('')
+    console.log(s)
+    console.log(arrayInBinary, arrayInBinary.length)
+    console.log(string)
     let substring = pattern
     for (let i = 0; i < string.length; i++) {
         for (let j = 0; j < substring.length; j++) {
@@ -54,5 +59,4 @@ const binaryPatternMatching = (pattern, s) => {
         }
     }
     return count
-  
 }
