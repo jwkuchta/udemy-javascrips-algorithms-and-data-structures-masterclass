@@ -4,6 +4,8 @@
 // each node is connected to the next node unidirectionally
 // random access is not allowed but they are very good at insertion or deletion - no need for re-indexing
 
+const { isArray } = require("util")
+
 // 
 class Node {
     constructor(val) {
@@ -131,14 +133,42 @@ class SinglyLinkedList {
 
     // takes in an index and removes a value at the index
     remove(index) {
-        if (index < 0 || index > this.length) return false
-        if (index === this.length) return !!this.pop()
-        if (index === 0) return !!this.shift()
+        if (index < 0 || index > this.length) return null
+        if (index === this.length - 1) this.pop()
+        if (index === 0) this.shift()
         let removed = this.get(index)
         let before = this.get(index-1)
         before.next = removed.next
         this.length--
-        return true
+        return removed
+    }
+    
+    // traverse and reverse, we are redrawing pointers until it is all in reverse order
+    reverse() {
+        let node = this.head
+        this.head = this.tail
+        this.tail = node
+        // we need it to be null because the tail needs to be null
+        let prev = null
+        let next;
+        for (let i = 0; i < this.length; i++) {
+            next = node.next
+            node.next = prev
+            prev = node
+            node = next
+        }
+        return this
+    }
+
+    // helper for reverse() to see how it's going
+    print() {
+        let arr = []
+        let current = this.head
+        while (current) {
+            arr.push(current.val)
+            current = current.next
+        }
+        return arr
     }
 }
 
