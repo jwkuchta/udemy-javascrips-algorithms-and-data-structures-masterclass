@@ -51,8 +51,7 @@ class SinglyLinkedList {
 
         while (current.next) {
             newTail = current
-            current = current.next
-            
+            current = current.next   
         }
         this.tail = newTail
         // we need to writing to sever the arrow, so it no longer points to anything
@@ -63,6 +62,27 @@ class SinglyLinkedList {
             this.tail = null
         } 
         return current
+    }
+
+    shift() {
+        if (this.length === 0) return undefined
+        let severedHead = this.head
+        this.head = this.head.next
+        this.length--
+        if (this.length === 0) this.tail = null
+        return severedHead
+    }
+
+    unshift(value) {
+        let newNode = new Node(value)
+        if (!this.head) {
+            this.head = newNode
+            this.tail = newNode
+        }
+        this.head.next = this.head
+        this.head = newNode
+        this.length++
+        return this
     }
 }
 
@@ -76,4 +96,7 @@ list.push('are')
 list.push('you')
 list.push('hungry')
 list.push('today')
-console.log(list.pop())
+// console.log(list.shift())
+// console.log(list.pop())
+console.log('old head is', list.shift())
+console.log(list, 'new head is', list.head)
