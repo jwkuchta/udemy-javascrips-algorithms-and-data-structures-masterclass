@@ -60,3 +60,6 @@ const binaryPatternMatching = (pattern, s) => {
     }
     return count
 }
+
+
+

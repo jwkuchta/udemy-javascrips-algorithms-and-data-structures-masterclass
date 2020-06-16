@@ -33,7 +33,7 @@ class SinglyLinkedList {
             this.head = node
             this.tail = this.head
         } else {
-            // take the tail and add on to the end
+            // take the tail and add on to the end (so we have a connection!)
             this.tail.next = node
             // move the tail one spot over
             this.tail = node
@@ -121,6 +121,7 @@ class SinglyLinkedList {
         if (index < 0 || index > this.length) return false
         // adding !! coerces truthy value to true, and we save a few lines of code
         if (index === this.length) return !!this.push(value)
+        // unshifts and returns true
         if (index === 0) return !!this.unshift(value)
         let newNode = new Node(value)
         let before = this.get(index-1)
@@ -145,17 +146,17 @@ class SinglyLinkedList {
     
     // traverse and reverse, we are redrawing pointers until it is all in reverse order
     reverse() {
-        let node = this.head
+        let current = this.head
         this.head = this.tail
-        this.tail = node
+        this.tail = current
         // we need it to be null because the tail needs to be null
         let prev = null
-        let next;
+        let next
         for (let i = 0; i < this.length; i++) {
-            next = node.next
-            node.next = prev
-            prev = node
-            node = next
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
         }
         return this
     }
