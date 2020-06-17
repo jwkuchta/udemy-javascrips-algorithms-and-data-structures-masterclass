@@ -120,15 +120,35 @@ class DoublyLinkedList {
         if (index < 0 || index > this.length) return false
         if (index === this.length) return !!this.push(value)
         if (index === 0) return !!this.unshift(value)
+
         let newNode = new Node(value)
         let before = this.get(index-1)
         let after = this.get(index)
-        before.next = newNode
-        newNode.prev = before
-        after.prev = newNode
+
+        before.next = newNode, newNode.prev = before
+        newNode.next = after, after.prev = newNode
         this.length++
         return true
+    }
 
+    remove(index) {
+        // check if index valid
+        if (index < 0 || index > this.length) return undefined
+        if (index === this.length - 1) return this.pop()
+        if (index === 0) return this.shift()
+
+        // find the node to remove and the node before it
+        let before = this.get(index-1)
+        let node = this.get(index)
+        let after = this.get(index+1)
+        // establish new connections skipping the node to be removed
+        before.next = after.prev
+        after.next = before.prev
+        // sever nodes connections just to be sure
+        node.next = null
+        node.prev = null
+        this.length--
+        return node
     }
 
     print() {
