@@ -106,6 +106,16 @@ class DoublyLinkedList {
         }
     }
 
+    set(index, value) {
+        let nodeAtIndex = this.get(index)
+        if (!nodeAtIndex) {
+            return false
+        } else {
+            nodeAtIndex.value = value
+            return true
+        }
+    }
+
     print() {
         let arr = []
         let current = this.head
