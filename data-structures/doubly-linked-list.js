@@ -116,6 +116,21 @@ class DoublyLinkedList {
         }
     }
 
+    insert(index, value) {
+        if (index < 0 || index > this.length) return false
+        if (index === this.length) return !!this.push(value)
+        if (index === 0) return !!this.unshift(value)
+        let newNode = new Node(value)
+        let before = this.get(index-1)
+        let after = this.get(index)
+        before.next = newNode
+        newNode.prev = before
+        after.prev = newNode
+        this.length++
+        return true
+
+    }
+
     print() {
         let arr = []
         let current = this.head
