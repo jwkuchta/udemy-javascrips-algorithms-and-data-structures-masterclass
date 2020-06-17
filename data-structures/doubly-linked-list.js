@@ -30,6 +30,27 @@ class DoublyLinkedList {
         this.length++
         return this
     }
+
+    // when you chop off the tail, sever both connections, not just next!
+    // if we don't, the popped node will have lingering connections
+    pop() {
+        if (this.length === 0) return undefined
+        let severedTail = this.tail
+        if (this.length === 1) {
+            this.head = null
+            this.tail = null
+        } else {
+            this.tail = this.tail.prev
+            // this.tail = severedTail
+            this.tail.next = null
+            tail.prev = null
+            // severedTail = null
+        }
+        this.length--
+        return severedTail
+    }
+
+   
 }
 
 
