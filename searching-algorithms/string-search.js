@@ -61,5 +61,10 @@ const binaryPatternMatching = (pattern, s) => {
     return count
 }
 
+// skips overlapping substrings, not a good solution
+const binaryPatternMatching2 = (binary, string) => {
+    return string.split("").map( (v,i) => !("aeiou".indexOf(v) > -1) * 1).join("").match(new RegExp(binary,"g")).length
+}
+
 
 
