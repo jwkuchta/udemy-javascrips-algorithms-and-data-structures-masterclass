@@ -82,7 +82,39 @@ class DoublyLinkedList {
         return this
     }
 
-   
+    // we could do it similarly to a singly-linked list but there is a faster way for dounbly-linked list
+    get(index) {
+        if (index < 0 || index >= this.length) return null
+        if (index === 0) return this.head
+        if (index === this.length) return this.tail
+        let middleIndex = Math.round(this.length / 2)
+        let left = this.head
+        let right = this.tail
+        let count = 0
+        if (index <= middleIndex) {
+            while (count !== index) {
+                left = left.next
+                count++
+            }
+            return left
+        } else {
+            while (count !== (this.length - index -1)) {
+                right = right.prev
+                count++
+            }
+            return right
+        }
+    }
+
+    print() {
+        let arr = []
+        let current = this.head
+        while (current) {
+            arr.push(current.value)
+            current = current.next
+        }
+        return arr
+    }
 }
 
 
