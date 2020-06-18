@@ -149,6 +149,27 @@ class DoublyLinkedList {
         return node
     }
 
+    reverse() {
+        if (this.head === null) return null
+        
+        let currentNode = this.head
+        this.tail = currentNode
+      
+        while (currentNode !== null) {
+            let prev = currentNode.prev
+            currentNode.prev = currentNode.next
+            currentNode.next = prev
+      
+            if (currentNode.prev) {
+                currentNode = currentNode.prev
+            } else {
+                this.head = currentNode
+                break
+            }
+        }
+        return this
+    }
+
     print() {
         let arr = []
         let current = this.head
