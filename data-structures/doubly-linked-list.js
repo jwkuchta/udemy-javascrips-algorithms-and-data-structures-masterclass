@@ -137,16 +137,14 @@ class DoublyLinkedList {
         if (index === this.length - 1) return this.pop()
         if (index === 0) return this.shift()
 
-        // find the node to remove and the node before it
+        // find the node to remove and the node before it and after it
         let before = this.get(index-1)
         let node = this.get(index)
         let after = this.get(index+1)
         // establish new connections skipping the node to be removed
-        before.next = after.prev
-        after.next = before.prev
+        before.next = after.prev, after.next = before.prev
         // sever nodes connections just to be sure
-        node.next = null
-        node.prev = null
+        node.next = null, node.prev = null
         this.length--
         return node
     }
