@@ -17,26 +17,93 @@ class SearchTree {
         this.root = null
     }
 
+    insert(value) {
+        let newNode = new Node(value)
+        if (this.root === null) {
+            this.root = newNode
+            return this
+        }
+        let current = this.root
+        while (true) {
+            if (current.value === value) return undefined
+            if (current.value > value) {
+                if (current.left === null) {
+                    current.left = newNode
+                    return this
+                } else {
+                    current = current.left
+                }
+            } else {
+                if (current.right === null) {
+                    current.right = newNode
+                    return this
+                } else {
+                    current = current.right
+                }
+            }
+        }
+    }
+
+    // visit siblings before children
     BFS() {
         let queue = []
         let searched = []
-        let node = this.root
-        queue.push(node)
-        while (queue.length > 0) {
-            node = queue.shift()
-            searched.push(node.value)
-            if (node.left) queue.push(node.left)
-            if (node.right) queue.push(node.right)
-        } 
+        let current = this.root
+        queue.push(this.root)
+        while (queue.length) {
+            current = queue.shift()
+            searched.push(current.value)
+            if (current.left) queue.push(current.left)
+            if (current.right) queue.push(current.right)
+        }
         return searched
+    }
+
+    // visit children before siblings
+    DFSpreorder() {
+        let visited = []
+        // optional
+        let current = this.root
+
+        const traverse = node => {
+            visited.push(node.value)
+            // this order is significant
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+        }
+
+        traverse(current)
+        return visited
+    }
+
+    // we traverse the tree first, then we visit the nodes
+    // go all the way down and start there
+    // root will be the last person to visit
+    DFSpostorder() {
+        let visited = []
+        let current = this.root
+        
+        const traverse = node => {
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+            visited.push(node.value)
+        }
+
+        traverse(current)
+        return visited
     }
 
 }
 
 let tree = new SearchTree()
-tree.root = new Node(10)
-tree.root.right = new Node(15)
-tree.root.left = new Node(7)
-tree.root.left.right = new Node(9)
+tree.insert(10)
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
 
-console.log(tree.traverse())
+// console.log(tree)
+
+console.log(tree.DFSpreorder())
+console.log(tree.DFSpostorder())
