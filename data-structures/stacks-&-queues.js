@@ -49,18 +49,18 @@ class Node {
 // for queues we can use shift() and unshift()
 // you can do this with an array but it would be very inefficient so we will write one from scratch
 
-class Queue {
-    constructor() {
-        this.first = null
-        this.last = null
-        this.size = o
-    }
-}
-
 class Node {
     constructor(value) {
         this.value = value
         this.next = null
+    }
+}
+
+class Queue {
+    constructor() {
+        this.first = null
+        this.last = null
+        this.size = 0
     }
 
     // we will be adding to the end and removing from the beginning to avoid having to traverse the whole list
@@ -83,7 +83,7 @@ class Node {
         // removing from the beginning
         if (this.size === 0) return null
         let severedNode = this.first
-        if (this.first = this.last) {
+        if (this.first === this.last) {
             this.last = null
         }
         this.first = this.first.next
@@ -91,3 +91,9 @@ class Node {
         return severedNode.value
     }
 }
+
+// Big 0 of queues:
+//  Insertion - O(1)
+//  Removal - O(1)
+//  Searching - O(N)
+//  Access - O(N)

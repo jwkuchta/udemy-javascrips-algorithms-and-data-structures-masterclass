@@ -24,7 +24,7 @@ const stringSearch = (string, substring) => {
     return count
 }
 
-stringSearch('lola loled', 'lol') // 2
+// stringSearch('lola loled', 'lol') 
 
 // given a pattern of 1s and 0s and a string of all lowercase letters, 
 // where 1 corresponds to a consonant and 0 corresponds to a vowel, 
@@ -65,6 +65,57 @@ const binaryPatternMatching = (pattern, s) => {
 const binaryPatternMatching2 = (binary, string) => {
     return string.split("").map( (v,i) => !("aeiou".indexOf(v) > -1) * 1).join("").match(new RegExp(binary,"g")).length
 }
+
+function binaryPatternMatching3(needle, haystack) {
+    haystack = haystack.replace(
+        /[aeiouy]/gi, '0'
+    ).replace(/[bcdfghjklmnpqrstvwxz]/gi, '1'
+    )
+    let matches = []
+    let count = 0
+    let stop = haystack.length - needle.length
+    for (let i = 0; i <= stop; i++) {
+        if (haystack.substr(i, needle.length) == needle) 
+        count++
+        
+    } 
+    return count, matches
+}
+
+function fun1(str, k) {
+    let rtn = [];
+    for (let i = 0; i < str.length - k + 1; i++) {
+      let current = str.substr(i, k);
+      rtn.push(current)
+    }
+    return rtn;
+}
+
+function binaryPatternMatching4(needle, haystack) {
+    haystack = haystack.replace(
+        /[aeiouy]/gi, '0'
+    ).replace(
+        /[bcdfghjklmnpqrstvwxz]/gi, '1'
+    )
+    let matches = 0
+    let stop = haystack.length - needle.length
+    for (let i = 0; i <= stop; i++) {
+        let substring = haystack.substr(i, needle.length)
+        console.log(substring)
+        if (substring == needle) {
+            matches++
+        }    
+    } 
+    return matches
+}
+
+console.log(binaryPatternMatching4('010', 'amazing'))
+
+
+
+
+
+  
 
 
 
