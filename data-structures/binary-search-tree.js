@@ -1,3 +1,8 @@
+// Big O of BST:
+// insertion - O(log n) average/best case. Worst case is O(n) - in the case of a completely one-sided tree
+// searching - O(log n) same as above
+// doubling the nodes adds one more step (y = log2(x))
+
 class Node {
     constructor(value) {
         this.value = value
