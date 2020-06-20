@@ -60,6 +60,7 @@ class SearchTree {
     }
 
     // visit children before siblings
+    // result allows you to reconstruct the tree from the array
     DFSpreorder() {
         let visited = []
         // optional
@@ -93,6 +94,22 @@ class SearchTree {
         return visited
     }
 
+    // traverse left, then visit the node, then traverse the right and visit those nodes
+    // result goes from lowest to highest
+    DFSinOrder() {
+        let visited = []
+        let current = this.root
+
+        const traverse = node => {
+            if (node.left) traverse(node.left)
+            visited.push(node.value)
+            if (node.right) traverse(node.right)
+        }
+
+        traverse(current)
+        return visited
+    }
+
 }
 
 let tree = new SearchTree()
@@ -105,5 +122,10 @@ tree.insert(20)
 
 // console.log(tree)
 
-console.log(tree.DFSpreorder())
-console.log(tree.DFSpostorder())
+console.log('preorder: ', tree.DFSpreorder())
+console.log('postorder: ', tree.DFSpostorder())
+console.log('inorder: ', tree.DFSinOrder())
+
+// when to use which
+// BFS vs DFS - depends on a tree
+// time complexity is the same but space complexity is larger for BDS because of the queue
