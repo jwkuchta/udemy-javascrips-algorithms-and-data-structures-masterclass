@@ -49,16 +49,61 @@ class MaxBinaryHeap {
             idx = parentIdx
         }
     }
+
+    // extract and swap
+    extractMax() {
+        let max = this.values[0]
+        let last = this.values.pop()
+        this.values[0] = last
+        let index = 0
+        let length = this.values.length
+        while (true) {
+            let element = this.values[0]
+            let left = 2 * index + 1
+            let right = 2 * index + 2
+            let leftChild, rightChild
+            let swap = null
+
+            if (left < length) {
+                leftChild = this.values[left]
+            if (leftChild > element) {
+                swap = left
+            }
+        } 
+            if (right < length) {
+                rightChild = this.values[right]
+            if (rightChild > element) {
+                if ((swap === null && rightChild > element) ||
+                    (swap !== null && rightChild > leftChild)) {
+                    swap = right
+                }
+            }
+        }
+        if (swap === null) break
+        this.values[index] = this.values[swap] 
+        this.values[swap] = element
+        index = swap
+        }
+        return max
+    }
+
 }
 
 let max = new MaxBinaryHeap()
 let max2 = new MaxBinaryHeap()
+let heap = new MaxBinaryHeap()
 
 max.values.push(90, 80, 70, 65, 64, 50, 49)
 max2.values.push(41, 39, 33, 18, 27, 12)
+heap.values.push(70, 67, 65, 45, 58, 40, 53, 44, 15, 31)
+
 
 // console.log(max)
-console.log(max.insert(81))
-console.log(max2.insert(55))
-
+max.insert(81)
+// max2.insert(55)
+// console.log('max before extraxtMax', max)
+// console.log(heap)
+// heap.extractMax()
+// console.log(heap)
 // console.log(max)
+heap.extractMax()
