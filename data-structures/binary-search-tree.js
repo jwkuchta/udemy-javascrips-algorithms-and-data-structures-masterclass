@@ -1,7 +1,21 @@
+// examples of trees
+// HTML DOM
+// Network Routing
+// Abstract Syntax Trees
+// Artificial Intelligence - a minimax tree (decision tree)
+// computer files
+// JSON
+
+// kinds of trees
+// binary trees and its subtype, binary search trees - each node can have at most 2 children
+// they store data that can be compared
+
 // Big O of BST:
 // insertion - O(log n) average/best case. Worst case is O(n) - in the case of a completely one-sided tree
 // searching - O(log n) same as above
 // doubling the nodes adds one more step (y = log2(x))
+
+// step-up from linked lists
 
 class Node {
     constructor(value) {
