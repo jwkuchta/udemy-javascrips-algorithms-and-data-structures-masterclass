@@ -107,3 +107,7 @@ max.insert(81)
 // console.log(heap)
 // console.log(max)
 heap.extractMax()
+
+
+
+
