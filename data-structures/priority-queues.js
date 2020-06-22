@@ -6,6 +6,8 @@ class Node {
     constructor(value, priority) {
         this.value = value
         this.priority = priority
+        // we could add logic for elements of equal priority
+        this.insertTime = Date.now()
     }
 }
 
@@ -16,6 +18,7 @@ class PriorityQueue {
     }
 
     // his solution
+    // O(log n)
     enqueue(value, priority) {
         let newNode = new Node(value, priority)
         this.values.push(newNode)
@@ -37,6 +40,7 @@ class PriorityQueue {
     }
 
     // extract and swap
+    // O(log n)
     dequeue() {
         let min = this.values[0]
         let last = this.values.pop()
@@ -72,8 +76,8 @@ class PriorityQueue {
         }
         return min
     }
-
 }
+
 let heap = new PriorityQueue()
 heap.enqueue('pay bills', 1)
 heap.enqueue('feed cats', 2)
