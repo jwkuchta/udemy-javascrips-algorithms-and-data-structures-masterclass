@@ -22,6 +22,26 @@ class HashTable {
         this.keyMap[index].push([key, value])
     }
     
+    // his solution
+    // get(key) {
+    //     let index = this._hash(key)
+    //     if (this.keyMap[index]) {
+    //         if (this.keyMap[index].length === 1) {
+    //             console.log(this.keyMap[index])
+    //             return this.keyMap[index][1]
+    //         } else {
+    //             for (let i = 0; i < this.keyMap[index].length; i++) {
+    //                 console.log(i)
+    //                 if (this.keyMap[index][i][0] === key) {
+    //                     return this.keyMap[index][i][1]
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return undefined
+    // }
+
+    // my solution
     get(key) {
         let index = this._hash(key)
         // console.log(index)
@@ -30,14 +50,12 @@ class HashTable {
                 console.log(this.keyMap[index])
                 return this.keyMap[index][1]
             } else {
-                for (let i = 0; i < this.keyMap[index].length; i++) {
-                    console.log(i)
-                    if (this.keyMap[index][i][0] === key) {
-                        return this.keyMap[index][i]
+                for (let arr of this.keyMap[index]) {
+                    if (arr[0] === key) {
+                        return arr[1]
                     }
                 }
             }
-            // return sthis.keyMap[index][1]
         }
         return undefined
     }
