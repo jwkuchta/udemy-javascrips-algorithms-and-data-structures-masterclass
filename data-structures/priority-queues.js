@@ -2,6 +2,7 @@
 // data structure where each element has a priority
 // elements with higher priority are served before elements with lower priority (like hospital triage)
 
+// best for insertion and removal but not searching (element could be anywhere, unlike in binary search trees)
 class Node {
     constructor(value, priority) {
         this.value = value
@@ -77,7 +78,7 @@ class PriorityQueue {
         return min
     }
 }
-
+ 
 let heap = new PriorityQueue()
 heap.enqueue('pay bills', 1)
 heap.enqueue('feed cats', 2)
