@@ -95,6 +95,72 @@ class Graph {
         }
         return result
     }
+
+    // his solution
+    depthFirstIterative(start) {
+        const stack = [start]
+        const result = []
+        const visited = {}
+        // to avoid re-initializing the currentVertex inside the loop
+        let currentVertex
+
+        visited[start] = true
+        while (stack.length) {
+            currentVertex = stack.pop()
+            result.push(currentVertex)
+
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true
+                    stack.push(neighbor)
+                }
+            })
+        }
+        return result
+    }
+
+    // visit all neighbors before neighbor's neighbors
+    // my solution
+    BFS(vertex) {
+        const queue = [vertex]
+        const result = []
+        const visited = {}
+        let first
+
+        while (queue.length) {
+            first = queue.shift()
+
+            if (!visited[first]) {
+                visited[first] = true
+                result.push(first)
+                queue.push(...this.adjacencyList[first])
+            }
+        }
+        return result
+    }
+
+    // his solution
+    breadthFirst(start) {
+        const queue = [start]
+        const result = []
+        const visited = {}
+        let currentVertex
+
+        visited[start] = true
+
+        while (queue.length) {
+            currentVertex = queue.shift()
+            result.push(currentVertex)
+
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true
+                    queue.push(neighbor)
+                }
+            })
+        }
+        return result
+    }
 }
 
 let g = new Graph()
@@ -117,4 +183,8 @@ g.addEdge('E', 'F')
 // console.log(g)
 // console.log(g.DFSrecursive("F"))
 // console.log(g.depthFirstRecursive("F"))
-console.log(g.DFSiterative("F"))
+// console.log(g.DFSiterative("A"))
+// console.log(g.depthFirstIterative("A"))
+
+console.log(g.BFS("A"))
+console.log(g.breadthFirst("A"))
