@@ -51,6 +51,15 @@ class Graph {
         delete this.adjacencyList[vertex]
         return this
     }
+
+    // his solution
+    removeVertex2(vertex) {
+        while (this.adjacencyList[vertex].length) {
+            const adjacentVertex = this.adjacencyList[vertex].pop()
+            this.removeEdge(vertex, adjacentVertex)
+        }
+        delete this.adjacencyList[vertex]
+    }
 }
 
 let g = new Graph()
