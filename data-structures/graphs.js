@@ -26,8 +26,21 @@ class Graph {
 
     // we first add an unconnected vertex
     addVertex(vertex) {
-        // we will not worry about duplicates for now
         if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
+    }
+
+    // to add edge we need to specify two vertises
+    addEdge(vertex1, vetex2) {
+        if (this.adjacencyList[vertex1]) this.adjacencyList[vertex1].push(vertex2)
+        if (this.adjacencyList[vertex2]) this.adjacencyList[vertex2].push(vertex1)
+    }
+
+    // removes two pieces of data, cause the connection is stored in two places
+    removeEdge(vertex1, vertex2) {
+        if (!this.adjacencyList[vertex1] && !this.adjacencyList[vertex2]) return this
+        this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2)
+        this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1)
+        return this
     }
 }
 
