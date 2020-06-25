@@ -30,7 +30,7 @@ class Graph {
     }
 
     // to add edge we need to specify two vertises
-    addEdge(vertex1, vetex2) {
+    addEdge(vertex1, vertex2) {
         if (this.adjacencyList[vertex1]) this.adjacencyList[vertex1].push(vertex2)
         if (this.adjacencyList[vertex2]) this.adjacencyList[vertex2].push(vertex1)
     }
@@ -42,10 +42,32 @@ class Graph {
         this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1)
         return this
     }
+
+    removeVertex(vertex) {
+        // loop over all edges and remove each connection + the key in the adjacencyList
+        for (let key in this.adjacencyList) {
+            this.adjacencyList[key] = this.adjacencyList[key].filter(el => el !== vertex)
+        }
+        delete this.adjacencyList[vertex]
+        return this
+    }
 }
 
 let g = new Graph()
 
-console.log(g.addVertex('cats'))
-g.adjacencyList['cats'].push('wallace')
+g.addVertex("Tokyo")
+g.addVertex("Dallas")
+g.addVertex("Aspen")
+g.addVertex("Los Angeles")
+
+g.addEdge("Tokyo", "Dallas")
+g.addEdge("Dallas", "Aspen")
+g.addEdge("Dallas", "Los Angeles")
+
+console.log('with Tokyo:')
+console.log(g)
+
+g.removeVertex("Tokyo")
+
+console.log('without Tokyo')
 console.log(g)
