@@ -44,7 +44,7 @@ class Graph {
             visited[v] = true
             results.push(v)
             for (let node of this.adjacencyList[v]) {
-                if (visited[node] !== true) {
+                if (!visited[node]) {
                     DFS(node)
                 }
             }
@@ -52,6 +52,28 @@ class Graph {
         }
         DFS(vertex)
         return results
+    }
+
+    // his solution
+    depthFirstRecursive(start) {
+        const result = []
+        const visited = {}
+        // because of the "this" inside the helper function
+        const adjacencyList = this.adjacencyList
+
+        function dfs(vertex){
+            if (!vertex) return null
+            visited[vertex] = true
+            result.push(vertex)
+            
+            adjacencyList[vertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    return dfs(neighbor)
+                }
+            })
+        }
+        dfs(start)
+        return result
     }
 }
 
@@ -74,3 +96,4 @@ g.addEdge('E', 'F')
 
 // console.log(g)
 console.log(g.DFSrecursive("A"))
+console.log(g.depthFirstRecursive("A"))
