@@ -44,11 +44,10 @@ class Graph {
             visited[v] = true
             results.push(v)
             for (let node of this.adjacencyList[v]) {
-                if (!visited[node]) {
+                if (!visited[node]){
                     DFS(node)
-                }
+                } 
             }
-            // console.log(results, visited)
         }
         DFS(vertex)
         return results
@@ -75,6 +74,27 @@ class Graph {
         dfs(start)
         return result
     }
+
+    // my solution
+    DFSiterative(vertex) {
+        const stack = []
+        const result = []
+        const visited = {}
+
+        // so our while loop condition is true at the beginning
+        stack.push(vertex)
+        // visited[vertex] = true
+
+        while(stack.length) {
+            let next = stack.pop()
+            if (!visited[next]) {
+                visited[next] = true
+                result.push(next)
+                stack.push(...this.adjacencyList[next])
+            }
+        }
+        return result
+    }
 }
 
 let g = new Graph()
@@ -95,5 +115,6 @@ g.addEdge('D', 'F')
 g.addEdge('E', 'F')
 
 // console.log(g)
-console.log(g.DFSrecursive("A"))
-console.log(g.depthFirstRecursive("A"))
+// console.log(g.DFSrecursive("F"))
+// console.log(g.depthFirstRecursive("F"))
+console.log(g.DFSiterative("F"))
