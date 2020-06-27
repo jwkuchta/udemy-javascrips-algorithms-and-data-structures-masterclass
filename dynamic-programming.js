@@ -11,7 +11,7 @@ const fibonacci = n => {
 }
 
 const memoFib = n => {
-    let memo = {} 
+    let memo = []
     
     const fib = n => {
         let value
@@ -32,6 +32,24 @@ const memoFib = n => {
     // console.log(memo)
     return fib(n)
 }
+
+// his version - saves fib value at index instead of in an object like I did
+function fib(n, memo = []) {
+    if (memo[n] !== undefined) return memo[n]
+    if (n <= 2) return 1
+    var result = fib(n-1, memo) + fib(n-2, memo)
+    memo[n] = result
+    return result
+}
+
+// even shorter (though a bit less readable)
+function shortFib(n, memo = []) {
+    if (memo[n] !== undefined) return memo[n]
+    if (n <= 2) return 1
+    memo[n] = fib(n-1, memo) + fib(n-2, memo)
+    return memo[n]
+}
+
 const range = (start, end) => {
     let arr = [];
     for (let i = start; i <= end; i++) {
@@ -42,17 +60,14 @@ const range = (start, end) => {
 
 let oneToHundred = range(1, 100)
 
-console.log(fibonacci(1))
-console.log(fibonacci(2))
-console.log(fibonacci(3))
-console.log(fibonacci(4))
-console.log(fibonacci(5))
-console.log(fibonacci(6))
-console.log(fibonacci(7))
-console.log(fibonacci(8))
-console.log(fibonacci(9))
-console.log(fibonacci(10))
-
 for (let num of oneToHundred) {
-    console.log(num, ":", memoFib(num))
+    console.log(fib(num))
 }
+
+// this was a top-down approach
+// now let's try bottom-up
+// TABULATION is the opposite of the memoization
+// we store previous result in an array, usually done using iteration
+// it is less space-intensive than memoization
+
+
