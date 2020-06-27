@@ -39,7 +39,7 @@ const range = (start, end) => {
         arr.push(i);
     }
     return arr
-  }
+}
  
 
 const printSisters = n => {
