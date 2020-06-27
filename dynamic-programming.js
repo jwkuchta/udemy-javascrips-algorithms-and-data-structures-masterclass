@@ -50,6 +50,22 @@ function shortFib(n, memo = []) {
     return memo[n]
 }
 
+// this was a top-down approach
+// now let's try bottom-up
+// TABULATION is the opposite of the memoization
+// we store previous result in an array, usually done using iteration
+// it is less space-intensive than memoization
+
+// TABULATED version
+const tabFib  = n => {
+    if (n <= 2) return 1
+    let fibNums = [0, 1, 1]
+    for (let i = 3; i <= n; i ++) {
+        fibNums[i] = fibNums[i-1] + fibNums[i-2]
+    }
+    return fibNums[n]
+}
+
 const range = (start, end) => {
     let arr = [];
     for (let i = start; i <= end; i++) {
@@ -61,13 +77,6 @@ const range = (start, end) => {
 let oneToHundred = range(1, 100)
 
 for (let num of oneToHundred) {
-    console.log(fib(num))
+    console.log(tabFib(num))
 }
-
-// this was a top-down approach
-// now let's try bottom-up
-// TABULATION is the opposite of the memoization
-// we store previous result in an array, usually done using iteration
-// it is less space-intensive than memoization
-
 
