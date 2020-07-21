@@ -91,22 +91,57 @@ function fun1(str, k) {
     return rtn;
 }
 
-function binaryPatternMatching4(needle, haystack) {
-    haystack = haystack.replace(
+function binaryPatternMatching4(pattern, string) {
+    string = string.replace(
         /[aeiouy]/gi, '0'
     ).replace(
         /[bcdfghjklmnpqrstvwxz]/gi, '1'
     )
     let matches = 0
-    let stop = haystack.length - needle.length
+    let stop = string.length - pattern.length
     for (let i = 0; i <= stop; i++) {
-        let substring = haystack.substr(i, needle.length)
-        console.log(substring)
-        if (substring == needle) {
+        let substring = string.substr(i, pattern.length)
+
+        if (substring == pattern) {
             matches++
         }    
     } 
     return matches
+}
+
+function binaryPatternMatching5(pattern, s) {
+    let vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+    
+    // create an array of parts of s based on the length of the pattern
+    let parts = [];
+    for (let i = 0; i < s.length - pattern.length; i++) {
+        let end = i + pattern.length;
+        let sub = s.substring(i, end);
+        parts.push(sub)
+    }
+    let matches = 0;
+    
+    for (let part of parts) {
+        let isPatternMatch = true;
+        // start off as true, if at least one fails then this will be false for the s part
+        
+    
+        for (let letter = 0; letter < part.length; letter++) {
+            let partLetter = part[letter];
+            let patterDigit = pattern[letter];
+            let isVowel = vowels.includes(partLetter) ? 0 : 1;
+            let isMatch = isVowel === parseInt(patterDigit);
+
+            if (!isMatch) {
+                isPatternMatch = false;
+            }
+        }
+        console.log(`${part} — ${pattern} — ${isPatternMatch}`)
+        if (isPatternMatch) {
+            matches++;
+        }
+    } 
+    return matches;
 }
 
 console.log(binaryPatternMatching4('010', 'amazing'))

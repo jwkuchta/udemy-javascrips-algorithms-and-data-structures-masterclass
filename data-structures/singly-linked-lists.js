@@ -49,7 +49,7 @@ class SinglyLinkedList {
         if (!this.head) return undefined
 
         let current = this.head
-        let newTail = current
+        let newTail
 
         while (current.next) {
             newTail = current

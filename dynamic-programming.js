@@ -54,9 +54,9 @@ function shortFib(n, memo = []) {
 // now let's try bottom-up
 // TABULATION is the opposite of the memoization
 // we store previous result in an array, usually done using iteration
-// it is less space-intensive than memoization
+// it is less space-intensive than memoization (it will not hit stack overflow with large numbers)
 
-// TABULATED version
+// TABULATED version!!!
 const tabFib  = n => {
     if (n <= 2) return 1
     let fibNums = [0, 1, 1]

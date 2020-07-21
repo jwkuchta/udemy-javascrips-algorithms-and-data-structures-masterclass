@@ -24,7 +24,15 @@ const sisters = n => {
     }
   
     return helper(n)
-  }
+}
+
+const sisters = (n, memo = {}) => {
+    if (memo[n] !== null) return memo[n]
+    if (n <= 2) return 1
+    let result = fib(n-1, memo) + fib(n-2, memo)
+    memo[n] = result
+    return result
+}
   
   sisters(8)
   
